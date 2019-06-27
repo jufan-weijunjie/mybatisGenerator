@@ -171,7 +171,7 @@ public class MyBatisGeneratorConfigurationParser {
         }
 
         configuration.addContext(context);
-
+        //获取当前context元素下的子元素列表
         NodeList nodeList = node.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node childNode = nodeList.item(i);
@@ -561,6 +561,11 @@ public class MyBatisGeneratorConfigurationParser {
         }
     }
 
+    /**
+     * 解析配置的plugin属性
+     * @param context context
+     * @param node node
+     */
     private void parsePlugin(Context context, Node node) {
         PluginConfiguration pluginConfiguration = new PluginConfiguration();
 
