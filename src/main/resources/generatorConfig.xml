@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="testTables" targetRuntime="MyBatis3">
+        <!-- JavaBean 实现 序列化 接口 -->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
+            <property name="suppressJavaInterface" value="false"/>
+        </plugin>
+        <!-- genenat entity时,生成toString -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
+        <!-- <plugin type="org.mybatis.generator.plugins.page.PaginationPlugin" /> -->
+        <!-- 自定义查询指定字段  -->
+        <!-- <plugin type="org.mybatis.generator.plugins.field.FieldsPlugin" /> -->
+        <!-- 开启支持内存分页   可生成 支持内存分布的方法及参数
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
+        -->
+        <!-- generate entity时，生成hashcode和equals方法
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		 -->
+        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~  table配置行设置example不生成，注释  -->
+        <!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$" />
+            <property name="replaceString" value="Query" />
+        </plugin>-->
+        <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
+        <plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">
+            <property name="searchString" value="Mapper" />
+            <property name="replaceString" value="Mapper" />
+        </plugin>
+
+        <!-- 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  -->
+        <plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">
+            <property name="searchString" value="Mapper$" />
+            <property name="replaceString" value="Mapper" />
+        </plugin>
+        <commentGenerator type="org.mybatis.generator.plugins.comment.MyCommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否
+            <property name="suppressAllComments" value="true" />
+            -->
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://sh-cdb-5vlx8obm.sql.tencentcdb.com:62925/test" userId="root"
+                        password="weijunjie-123">
+        </jdbcConnection>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://t.jufandev.com:30621/asset_op" userId="root"
+                        password="We-are-hero-2015">
+        </jdbcConnection>-->
+        <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
+            userId="yycg"
+            password="yycg">
+        </jdbcConnection> -->
+
+        <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
+            NUMERIC 类型解析为java.math.BigDecimal -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true" />
+        </javaTypeResolver>
+
+
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.wei.first.bean"
+                            targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+            <!-- 从数据库返回的值被清理前后的空格 -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- targetProject:mapper映射文件生成的位置 -->
+        <sqlMapGenerator targetPackage="com.wei.first.mapper"
+                         targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.wei.first.mapper"
+                             targetProject=".\src\main\java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!-- 指定数据库表 设置example查询方法不生成 -->
+        <table schema="" tableName="sys_user_power" enableCountByExample="false"
+        enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId = "false"
+        />
+        <!-- <table schema="" tableName="t_account"></table>
+        <table schema="" tableName="t_account_log"></table>
+        <table schema="" tableName="t_bank"></table>
+        <table schema="" tableName="t_bankcard"></table>
+        <table schema="" tableName="t_claims_transfer"></table>
+        <table schema="" tableName="t_debt_info"></table>
+        <table schema="" tableName="t_expected_return"></table>
+        <table schema="" tableName="t_funding_not_matched"></table>
+        <table schema="" tableName="t_matched_result"></table>
+        <table schema="" tableName="t_prodect"></table>
+        <table schema="" tableName="t_product_account"></table>
+        <table schema="" tableName="t_productearngrate"></table>
+        <table schema="" tableName="t_station_information"></table>
+        <table schema="" tableName="t_undertaker"></table>
+        <table schema="" tableName="t_user"></table>
+        <table schema="" tableName="t_weighrule"></table> -->
+    </context>
+</generatorConfiguration>
