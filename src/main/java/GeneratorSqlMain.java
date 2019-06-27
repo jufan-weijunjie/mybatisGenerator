@@ -23,8 +23,11 @@ public class GeneratorSqlMain {
         path = path.substring(1,path.length());
         System.out.println(path);
         File file = new File(path);
+        //创建组态分析器
         ConfigurationParser cp = new ConfigurationParser(warnings);
+        //加载配置文件，开始解析组态（generatorConfig.xml）
         Configuration config = cp.parseConfiguration(file);
+        //
         DefaultShellCallback call = new DefaultShellCallback(overwrite);
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, call, warnings);
         myBatisGenerator.generate(null);

@@ -5,6 +5,7 @@
 <generatorConfiguration>
     <context id="testTables" targetRuntime="MyBatis3">
         <!-- JavaBean 实现 序列化 接口 -->
+
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin">
             <property name="suppressJavaInterface" value="false"/>
         </plugin>

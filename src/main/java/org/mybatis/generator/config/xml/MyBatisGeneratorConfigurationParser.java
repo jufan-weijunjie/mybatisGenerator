@@ -49,7 +49,7 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 /**
- * This class parses configuration files into the new Configuration API.
+ * 配置文件到API中
  * 
  * @author Jeff Butler
  */
@@ -137,9 +137,21 @@ public class MyBatisGeneratorConfigurationParser {
         }
     }
 
+    /**
+     * 读取xml（generatorConfig.xml）文件中配置的节点中context对象
+     * 可以自定义数据阶段
+     * @param configuration configuration
+     * @param node node
+     */
     private void parseContext(Configuration configuration, Node node) {
-
+        //获取到的节点是xml中元素为context的属性
         Properties attributes = parseAttributes(node);
+        /*(DTD文件中配置了
+        <!ATTLIST context id ID #REQUIRED
+          defaultModelType CDATA #IMPLIED
+          targetRuntime CDATA #IMPLIED
+          introspectedColumnImpl CDATA #IMPLIED>)
+          获取当前节点元素的属性*/
         String defaultModelType = attributes.getProperty("defaultModelType"); //$NON-NLS-1$
         String targetRuntime = attributes.getProperty("targetRuntime"); //$NON-NLS-1$
         String introspectedColumnImpl = attributes
@@ -683,6 +695,11 @@ public class MyBatisGeneratorConfigurationParser {
         propertyHolder.addProperty(name, value);
     }
 
+    /**
+     *  解析获取元件中的属性
+     * @param node node
+     * @return
+     */
     protected Properties parseAttributes(Node node) {
         Properties attributes = new Properties();
         NamedNodeMap nnm = node.getAttributes();

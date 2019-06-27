@@ -25,8 +25,14 @@ import static org.mybatis.generator.internal.util.messages.Messages.getString;
 
 public class Configuration {
 
+    /**
+     * contexts
+     */
     private List<Context> contexts;
 
+    /**
+     * classPathEntries
+     */
     private List<String> classPathEntries;
 
     public Configuration() {

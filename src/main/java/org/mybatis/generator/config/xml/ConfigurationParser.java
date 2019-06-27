@@ -92,9 +92,16 @@ public class ConfigurationParser {
         parseErrors = new ArrayList<>();
     }
 
+    /**
+     * 解析组态
+     * @param inputFile inputFile
+     * @return
+     * @throws IOException
+     * @throws XMLParserException
+     */
     public Configuration parseConfiguration(File inputFile) throws IOException,
             XMLParserException {
-
+        //转换fileReader（字符读取流中数据）
         FileReader fr = new FileReader(inputFile);
 
         return parseConfiguration(fr);
@@ -116,10 +123,19 @@ public class ConfigurationParser {
         return parseConfiguration(is);
     }
 
+    /**
+     * 解析组态
+     * @param inputSource inputSource
+     * @return
+     * @throws IOException
+     * @throws XMLParserException
+     */
     private Configuration parseConfiguration(InputSource inputSource)
             throws IOException, XMLParserException {
         parseErrors.clear();
+        //创建xml解析工厂
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        //设置是否解析文档
         factory.setValidating(true);
 
         try {
@@ -153,6 +169,7 @@ public class ConfigurationParser {
             if (rootNode.getNodeType() == Node.ELEMENT_NODE
                     && docType.getPublicId().equals(
                             XmlConstants.MYBATIS_GENERATOR_CONFIG_PUBLIC_ID)) {
+                //进入解析xml配置文件
                 config = parseMyBatisGeneratorConfiguration(rootNode);
             } else {
                 throw new XMLParserException(getString("RuntimeError.5")); //$NON-NLS-1$
@@ -169,6 +186,12 @@ public class ConfigurationParser {
         }
     }
 
+    /**
+     * 解析mybatis发生器组态
+     * @param rootNode rootNode
+     * @return
+     * @throws XMLParserException
+     */
     private Configuration parseMyBatisGeneratorConfiguration(Element rootNode)
             throws XMLParserException {
         MyBatisGeneratorConfigurationParser parser = new MyBatisGeneratorConfigurationParser(

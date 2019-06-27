@@ -30,16 +30,35 @@
   http://www.mybatis.org/generator/
   
 -->
-
 <!--
-  The generatorConfiguration element is the root element for configurations.
+
+    DTD文件 xml文件格式校验器
+    <!DOCTYPE 根元素名称[
+    <!ELEMENT 子元素名称(#PCDATA)>
+    ]>
+    <!ELEMENT 文档类型声明的起始定界符
+    根元素名称[ 一个XML文档只有一个根元素，如果XML文档使用DTD，那么根元素的名称就在这里指定；
+    <!ELEMENT子元素名称(#PCDATA)>用来定义出现在文档中的元素；
+    ]>：文档类型声明的结束界定符。
+
+    () - 用来给元素分组;
+    | - 在列出的元素中选择一个;
+    + - 可出的元素至少出现1次（1或多次）;
+    * - 列出的元素允许出现0次到任意多次（0或多次）;
+    ? - 列出的元素出现0次或1次,;
+    , - 列出的元素必须按照指定的顺序出现。
+
+-->
+<!--
+  generatorConfiguration元素是配置的根元素。
 -->
 <!ELEMENT generatorConfiguration (properties?, classPathEntry*, context+)>
                         
 <!--
-  The properties element is used to define a standard Java properties file
-  that contains placeholders for use in the remainder of the configuration
-  file.
+  properties元素用于定义标准Java属性文件
+  包含占位符以供在配置的其余部分中使用文件
+  <!ELEMENT 元素名 元素类型>
+  元素类型（指定元素的内容） EMPTY, 子元素类型, 混合型, ANY, PCDATA
 -->
 <!ELEMENT properties EMPTY>
 <!ATTLIST properties
@@ -47,8 +66,16 @@
   url CDATA #IMPLIED>
   
 <!--
-  The context element is used to describe a context for generating files, and the source
+  context元素用于描述生成文件的上下文和源
   tables.
+    CDATA: 字符数据；
+    ID: 该属性值在XML文档中是唯一的；
+    IDREF: 该属性值参考了XML文档中的另一个属性；
+    ENTITY: 表示该属性的设定值是一个外部实体，如一个图片文件；
+    NMTOKEN: 属性值只能由数字、字母、下划线、连字符等符号构成；
+    NOTATION: 属性值是在DTD中声明过的注解名称；
+    Enumerat: 列出能够赋予该属性的各种值的列表，只能从中选择属性值。
+
 -->
 <!ELEMENT context (property*, plugin*, commentGenerator?, (connectionFactory | jdbcConnection), javaTypeResolver?,
                          javaModelGenerator, sqlMapGenerator?, javaClientGenerator?, table+)>
