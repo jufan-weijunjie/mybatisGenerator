@@ -568,12 +568,12 @@ public class MyBatisGeneratorConfigurationParser {
      */
     private void parsePlugin(Context context, Node node) {
         PluginConfiguration pluginConfiguration = new PluginConfiguration();
-
+        //读取generatorConfig.xml文件中 context -> plugin
         context.addPluginConfiguration(pluginConfiguration);
-
+        //解析plugin的属性 dtd文件限制 属性只有 type
         Properties attributes = parseAttributes(node);
         String type = attributes.getProperty("type"); //$NON-NLS-1$
-
+        //插件组态的组态类型（对应的是plugin元素的属性type--类的全路径）
         pluginConfiguration.setConfigurationType(type);
 
         NodeList nodeList = node.getChildNodes();
