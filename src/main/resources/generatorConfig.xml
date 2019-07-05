@@ -44,7 +44,7 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://sh-cdb-5vlx8obm.sql.tencentcdb.com:62925/test" userId="root"
+                        connectionURL="jdbc:mysql://sh-cdb-5vlx8obm.sql.tencentcdb.com:62925/shiro" userId="root"
                         password="weijunjie-123">
         </jdbcConnection>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
@@ -89,8 +89,24 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 设置example查询方法不生成 -->
-        <table schema="" tableName="sys_user_power" enableCountByExample="false"
+        <table schema="" tableName="sys_permission" enableCountByExample="false"
         enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId = "false"
+        />
+        <table schema="" tableName="sys_role" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId = "false"
+        />
+        <table schema="" tableName="sys_role_permission" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId = "false"
+        />
+        <table schema="" tableName="sys_user_role" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"
+               selectByExampleQueryId = "false"
+        />
+        <table schema="" tableName="user_info" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"
                selectByExampleQueryId = "false"
         />
         <!-- <table schema="" tableName="t_account"></table>
